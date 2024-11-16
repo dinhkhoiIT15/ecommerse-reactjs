@@ -1,0 +1,4 @@
+//Khoi code styles dung chung va tai su dung lai duoc va co the thay doi dynamic cac gia tri
+@mixin radius_common($radius: 10px) {
+    border-radius: $radius;
+}

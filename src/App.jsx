@@ -1,11 +1,16 @@
-import "./App.css";
-import Hello from "@components/Hello/Hello";
+import MyFooter from "@components/Footer/Footer";
+import MyHeader from "@components/Header/Header";
+import MainLayout from "@components/Layout/Layout";
 
 function App() {
     return (
-        <div>
-            <Hello /> Ecommerse
-        </div>
+        <>
+            <MainLayout>
+                <MyHeader />
+                Contents
+                <MyFooter />
+            </MainLayout>
+        </>
     );
 }
 

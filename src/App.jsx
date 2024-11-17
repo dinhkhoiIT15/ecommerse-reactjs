@@ -1,9 +1,9 @@
-import MyHeader from "@components/Header/Header";
+import Homepage from "@components/HomePage/HomePage";
 
 function App() {
     return (
         <>
-            <MyHeader />
+            <Homepage />
         </>
     );
 }

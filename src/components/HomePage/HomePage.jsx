@@ -4,9 +4,15 @@ import styles from "./styles.module.scss";
 import Info from "@components/Info/Info";
 import AdvanceHeadling from "@components/AdvanceHeadling/AdvanceHeadling";
 import HeadingListProducts from "@components/HeadingListProducts/HeadingListProducts";
+import { useEffect } from "react";
+import { getProduct } from "@/apis/productsService";
 
 function Homepage() {
     const { container } = styles;
+
+    useEffect(() => {
+        getProduct();
+    }, []);
 
     return (
         <>

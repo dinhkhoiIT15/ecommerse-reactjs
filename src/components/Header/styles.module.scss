@@ -19,6 +19,9 @@
 
 .containerBoxIcon {
     @include flex_box_custom(center, center, 10px);
+    img {
+        cursor: pointer;
+    }
 }
 
 .containerMenu {

@@ -39,11 +39,13 @@ function MyHeader() {
                 </div>
 
                 <div>
-                    <img
-                        src={Logo}
-                        alt="Logo"
-                        style={{ width: "153px", height: "53px" }}
-                    />
+                    <a href="#logo">
+                        <img
+                            src={Logo}
+                            alt="Logo"
+                            style={{ width: "153px", height: "53px" }}
+                        />
+                    </a>
                 </div>
 
                 <div className={containerBox}>

@@ -10,9 +10,27 @@
     cursor: pointer;
 
     &:hover {
+        transition: background 300ms;
+    }
+}
+.primaryBtn {
+    background: $primary_color;
+    color: $white_color;
+
+    &:hover {
         background: transparent;
         color: $primary_color;
         border: 1px solid $primary_color;
-        transition: background 300ms;
+    }
+}
+
+.secondaryBtn {
+    background: $white_color;
+    color: $primary_color;
+    border: 1px solid $primary_color;
+
+    &:hover {
+        background: $primary_color;
+        color: $white_color;
     }
 }

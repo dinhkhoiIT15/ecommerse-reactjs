@@ -6,7 +6,8 @@ import AdvanceHeadling from "@components/AdvanceHeadling/AdvanceHeadling";
 import HeadingListProducts from "@components/HeadingListProducts/HeadingListProducts";
 import PopularProduct from "@components/PopularProduct/PopularProduct";
 import { useEffect, useState } from "react";
-import { getProduct } from "@/apis/productsService";
+import { getProducts } from "@/apis/productsService";
+import SaleHomePage from "@components/SaleHomePage/SaleHomePage";
 
 function Homepage() {
     const { container } = styles;
@@ -15,14 +16,14 @@ function Homepage() {
 
     //call api
     useEffect(() => {
-        // const query = {
-        //     sortType: 0,
-        //     page: 1,
-        //     limit: 10
-        // };
+        const query = {
+            //Set limit product=10
+            sortType: 0,
+            page: 1,
+            limit: 10
+        };
 
-        getProduct().then((res) => {
-            //.then((res)) -> Luu data tu api
+        getProducts(query).then((res) => {
             setListProduct(res.contents);
         });
     }, []);
@@ -38,6 +39,7 @@ function Homepage() {
                 <PopularProduct
                     data={listProduct.slice(2, listProduct.length)}
                 />
+                <SaleHomePage />
                 <div style={{ height: "200px" }}></div>
             </div>
         </>

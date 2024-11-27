@@ -6,9 +6,10 @@ import Logo from "@icons/images/Logo-retina.png";
 import reloadIcon from "@icons/svgs/reloadIcon.svg";
 import heartIcon from "@icons/svgs/heartIcon.svg";
 import cartIcon from "@icons/svgs/cartIcon.svg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useScrollHandling from "@/hooks/useScrollHandling";
 import classNames from "classnames";
+import { SidebarContext } from "@/contexts/SidebarProvider";
 
 function MyHeader() {
     const {
@@ -23,6 +24,9 @@ function MyHeader() {
 
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
+
+    const { isOpen, setIsOpen } = useContext(SidebarContext);
+    console.log(isOpen);
 
     useEffect(() => {
         //Neu scrollPosition > 80 thi setStickyPosition = true {Hien thi menu bar}
@@ -78,7 +82,11 @@ function MyHeader() {
                         {dataMenu.slice(3, dataMenu.length).map((item) => {
                             //slice chi in ra 3 phan tu tu 3 den het
                             return (
-                                <Menu content={item.content} href={item.href} />
+                                <Menu
+                                    content={item.content}
+                                    href={item.href}
+                                    setIsOpen={setIsOpen}
+                                />
                             );
                         })}
                     </div>

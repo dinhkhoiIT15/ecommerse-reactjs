@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { SidebarContext } from "@/contexts/SidebarProvider";
 import classNames from "classnames";
 import { TfiClose } from "react-icons/tfi";
+import Login from "@components/ContentSidebar/Login/Login";
 
 function Sidebar() {
     const { container, overlay, sidebar, slideSidebar, boxIcon } = styles;
@@ -24,6 +25,7 @@ function Sidebar() {
                         <TfiClose />
                     </div>
                 )}
+                <Login />
             </div>
         </div>
     );

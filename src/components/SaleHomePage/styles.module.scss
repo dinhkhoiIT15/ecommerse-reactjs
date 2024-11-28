@@ -25,12 +25,13 @@
     .boxBtn {
         @include flex_box_custom(center, center, 0);
 
-        margin-top: 30px;
+        width: 172px;
+        margin: 30px auto;
     }
 
     .boxImage {
         @include flex_box_custom(center, center, 0px);
 
-        width: 400px;
+        width: 350px;
     }
 }

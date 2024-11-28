@@ -15,7 +15,7 @@
     }
 
     .boxContent {
-        @include flex_box_custom(center, flex-start, 10px);
+        @include flex_box_custom(center, flex-start, 0);
 
         flex-direction: column;
 
@@ -24,9 +24,16 @@
             color: $primary_color;
         }
 
+        .size {
+            margin: 7px 0 10px;
+            font-size: 14px;
+            color: #9e9e9e;
+        }
+
         .price {
             font-size: 14px;
             color: $four_color;
+            margin-bottom: 7px;
         }
     }
 

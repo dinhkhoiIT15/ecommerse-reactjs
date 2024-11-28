@@ -4,6 +4,12 @@
     @include flex_box_custom(space-between, space-between, 0);
 
     flex-direction: column;
-    padding: 30px 20px;
     height: 90%;
+    padding: 30px 20px 0 20px;
+
+    .boxBtn {
+        @include flex_box_custom(space-between, unset, 10px);
+
+        flex-direction: column;
+    }
 }

@@ -33,10 +33,7 @@
 }
 
 .containerBoxIcon {
-    @include flex_box_custom(center, center, 10px);
-    img {
-        cursor: pointer;
-    }
+    @include flex_box_custom(center, center, 20px);
 }
 
 .containerMenu {
@@ -50,6 +47,7 @@
 .boxIcon {
     @include radius_common(50%);
     @include flex_box_custom(center, center, 0px);
+
     width: 26px;
     height: 26px;
     background-color: $primary_color;

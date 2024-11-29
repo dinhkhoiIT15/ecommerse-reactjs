@@ -1,11 +1,12 @@
 import InputCommon from "@components/InputCommon/InputCommon";
 import styles from "./styles.module.scss";
 import Button from "@components/Button/Button";
-import { useFormik } from "formik";
+import { getIn, useFormik } from "formik";
 import * as Yup from "yup";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "@/contexts/ToastProvider";
-import { register } from "@/apis/authService";
+import { register, signIn, getInfo } from "@/apis/authService";
+import Cookies from "js-cookie";
 
 function Login() {
     const { container, title, boxRememberMe, lostPassword } = styles;
@@ -33,19 +34,36 @@ function Login() {
         onSubmit: async (values) => {
             if (isLoading) return;
 
-            if (isRegister) {
-                const { email: username, password } = values;
-                setIsLoading(true);
+            const { email: username, password } = values;
+            setIsLoading(true);
 
+            if (isRegister) {
                 await register({ username, password })
                     .then((res) => {
-                        console.log(res);
                         toast.success(res.data.message);
                         setIsLoading(false);
                     })
                     .catch((err) => {
-                        console.log(err);
                         toast.error(err.response.data.message);
+                        setIsLoading(false);
+                    });
+            }
+
+            if (!isRegister) {
+                await signIn({ username, password })
+                    .then((res) => {
+                        // toast.success(res.data.message);
+                        setIsLoading(false);
+
+                        const { id, token, refreshToken } = res.data;
+                        //Set cookies
+                        Cookies.set("token", token);
+                        Cookies.set("refreshToken", refreshToken);
+
+                        console.log(res);
+                    })
+                    .catch((err) => {
+                        // toast.error(err.response.data.message);
                         setIsLoading(false);
                     });
             }
@@ -56,6 +74,10 @@ function Login() {
         setIsRegister(!isRegister);
         formik.resetForm();
     };
+
+    useEffect(() => {
+        getInfo();
+    }, []);
 
     return (
         <div className={container}>

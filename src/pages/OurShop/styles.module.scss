@@ -29,4 +29,29 @@
     background-size: cover;
     background-position: center;
     margin-top: 10px;
+
+    .contentBox {
+        @include flex_box_custom(space-between, center, 30px);
+
+        flex-direction: column;
+        padding: 60px 0;
+
+        .title {
+            font-size: 28px;
+            color: $four_color;
+            font-weight: 400;
+        }
+
+        .boxBtn {
+            width: 160px;
+        }
+
+        .countdownBox {
+            @include flex_box_custom(center, center, 10px);
+        }
+        .countdownBox > span {
+            margin-top: 0;
+            border: 1px solid #e1e1e1;
+        }
+    }
 }

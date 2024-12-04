@@ -1,6 +1,26 @@
 @import "@styles/mixin.module.scss";
 @import "@styles/variable.module.scss";
 
+.containerItem {
+    @include flex_box_custom(flex-start, center, 20px);
+
+    margin-top: 10px;
+
+    .content {
+        @include flex_box_custom(flex-start, flex-start, 10px);
+
+        flex-direction: column;
+    }
+
+    .leftBtn {
+        margin: 0;
+    }
+
+    .largeImg {
+        width: 430px;
+    }
+}
+
 .boxImg {
     width: 300px;
     height: 100%;
@@ -68,4 +88,31 @@
     font-size: 14px;
     color: $thir_color;
     font-weight: 400;
+}
+
+.boxSize {
+    @include flex_box_custom(center, center, 10px);
+
+    .size {
+        @include flex_box_custom(center, center, 0);
+
+        border: 1px solid #e1e1e1;
+        padding: 4px 6px;
+        font-size: 10px;
+
+        &:hover {
+            border: 1px solid $primary_color;
+            transition: border 500ms;
+            cursor: pointer;
+        }
+    }
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.boxBtn {
+    width: 172px;
+    margin: 10px auto;
 }

@@ -6,6 +6,11 @@ import { OurShopContext } from "@contexts/OurShopProvider";
 import { LiaEyeSolid, LiaShoppingBagSolid } from "react-icons/lia";
 import { TfiReload } from "react-icons/tfi";
 import { CiHeart } from "react-icons/ci";
+import Cookies from "js-cookie";
+import { SidebarContext } from "@/contexts/SidebarProvider";
+import { ToastContext } from "@/contexts/ToastProvider";
+import { addProductToCart } from "@/apis/cartService";
+import LoadingTextCommon from "@components/LoadingTextCommon/LoadingTextCommon";
 
 function ProductItem({
     src,
@@ -19,6 +24,11 @@ function ProductItem({
     const [sizeChoose, setSizeChoose] = useState("");
     const ourShopStore = useContext(OurShopContext);
     const [isShowGrid, setIsShowGrid] = useState(ourShopStore?.isShowGrid);
+    const userId = Cookies.get("userId");
+    const { setIsOpen, setType, handleGetListProductsCart } =
+        useContext(SidebarContext);
+    const { toast } = useContext(ToastContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     const {
         containerItem,
@@ -45,6 +55,43 @@ function ProductItem({
 
     const handleClearSize = () => {
         setSizeChoose("");
+    };
+
+    const handleAddToCart = () => {
+        if (!userId) {
+            setIsOpen(true);
+            setType("login");
+            toast.warning("Please login to add product to cart!");
+
+            return;
+        }
+
+        if (!sizeChoose) {
+            toast.warning("Please choose size!");
+
+            return;
+        }
+
+        const data = {
+            userId,
+            productId: details._id,
+            quantity: 1,
+            size: sizeChoose
+        };
+
+        setIsLoading(true);
+        addProductToCart(data)
+            .then((res) => {
+                setIsOpen(true);
+                setType("cart");
+                toast.success("Add product to cart successfully!");
+                setIsLoading(false);
+                handleGetListProductsCart(userId, "cart");
+            })
+            .catch((err) => {
+                toast.error("Add product to cart failed!");
+                setIsLoading(false);
+            });
     };
 
     useEffect(() => {
@@ -131,7 +178,16 @@ function ProductItem({
                             [leftBtn]: !isShowGrid
                         })}
                     >
-                        <Button content={"ADD TO CART"} />
+                        <Button
+                            content={
+                                isLoading ? (
+                                    <LoadingTextCommon />
+                                ) : (
+                                    "ADD TO CART"
+                                )
+                            }
+                            onClick={handleAddToCart}
+                        />
                     </div>
                 )}
             </div>

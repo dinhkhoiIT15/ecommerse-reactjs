@@ -19,13 +19,14 @@ function MyHeader() {
         containerBox,
         container,
         fixedHeader,
-        topHeader
+        topHeader,
+        boxCart,
+        quantity
     } = styles;
 
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
-    const { isOpen, setIsOpen } = useContext(SidebarContext);
-    const { type, setType } = useContext(SidebarContext);
+    const { isOpen, setIsOpen, listProductsCart } = useContext(SidebarContext);
 
     const handleOpenSidebar = (type) => {
         setIsOpen(true);
@@ -104,10 +105,16 @@ function MyHeader() {
                             style={{ fontSize: "20px", cursor: "pointer" }}
                             onClick={() => handleOpenSidebar("wishlist")}
                         />
-                        <PiShoppingCart
-                            style={{ fontSize: "20px", cursor: "pointer" }}
-                            onClick={() => handleOpenSidebar("cart")}
-                        />
+                        <div className={boxCart}>
+                            <PiShoppingCart
+                                style={{ fontSize: "25px", cursor: "pointer" }}
+                                onClick={() => handleOpenSidebar("cart")}
+                            />
+
+                            <div className={quantity}>
+                                {listProductsCart.length}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

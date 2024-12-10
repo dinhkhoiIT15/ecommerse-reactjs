@@ -32,7 +32,7 @@ function ListProducts() {
                             })}
                         </div>
 
-                        <div style={{ width: "180px" }}>
+                        <div style={{ width: "180px", margin: "50px auto" }}>
                             <Button content={"LOAD MORE PRODUCT"} />
                         </div>
                     </>

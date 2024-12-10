@@ -5,7 +5,7 @@ import cartIcon from "@icons/svgs/cartIcon.svg";
 import eyesIcon from "@icons/svgs/eyesIcon.svg";
 import cls from "classnames";
 import Button from "@components/Button/Button";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { OurShopContext } from "@contexts/OurShopProvider";
 
 function ProductItem({
@@ -16,8 +16,10 @@ function ProductItem({
     details,
     isHomaPage = true
 }) {
-    const { isShowGrid } = useContext(OurShopContext);
+    // const { isShowGrid } = useContext(OurShopContext);
     const [sizeChoose, setSizeChoose] = useState("");
+    const ourShopStore = useContext(OurShopContext);
+    const [isShowGrid, setIsShowGrid] = useState(ourShopStore?.isShowGrid);
 
     const {
         containerItem,
@@ -45,6 +47,14 @@ function ProductItem({
     const handleClearSize = () => {
         setSizeChoose("");
     };
+
+    useEffect(() => {
+        if (isHomaPage) {
+            setIsShowGrid(true);
+        } else {
+            setIsShowGrid(ourShopStore?.isShowGrid);
+        }
+    }, [isHomaPage, ourShopStore?.isShowGrid]);
 
     return (
         <div className={isShowGrid ? "" : containerItem}>

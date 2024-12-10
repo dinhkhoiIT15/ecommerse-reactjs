@@ -1,12 +1,11 @@
 import styles from "./styles.module.scss";
-import reloadIcon from "@icons/svgs/reloadIcon.svg";
-import heartIcon from "@icons/svgs/heartIcon.svg";
-import cartIcon from "@icons/svgs/cartIcon.svg";
-import eyesIcon from "@icons/svgs/eyesIcon.svg";
 import cls from "classnames";
 import Button from "@components/Button/Button";
 import { useContext, useState, useEffect } from "react";
 import { OurShopContext } from "@contexts/OurShopProvider";
+import { LiaEyeSolid, LiaShoppingBagSolid } from "react-icons/lia";
+import { TfiReload } from "react-icons/tfi";
+import { CiHeart } from "react-icons/ci";
 
 function ProductItem({
     src,
@@ -68,16 +67,16 @@ function ProductItem({
 
                 <div className={showFunctionWhenHover}>
                     <div className={boxIcon}>
-                        <img src={cartIcon} alt="..." />
+                        <LiaShoppingBagSolid style={{ fontSize: "20px" }} />
                     </div>
                     <div className={boxIcon}>
-                        <img src={heartIcon} alt="..." />
+                        <CiHeart style={{ fontSize: "25px" }} />
                     </div>
                     <div className={boxIcon}>
-                        <img src={reloadIcon} alt="..." />
+                        <TfiReload style={{ fontSize: "20px" }} />
                     </div>
                     <div className={boxIcon}>
-                        <img src={eyesIcon} alt="..." />
+                        <LiaEyeSolid style={{ fontSize: "23px" }} />
                     </div>
                 </div>
             </div>

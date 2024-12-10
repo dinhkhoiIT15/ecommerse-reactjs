@@ -3,29 +3,40 @@ import { useContext } from "react";
 import { OurShopContext } from "@contexts/OurShopProvider";
 import ProductItem from "@components/ProductItem/ProductItem";
 import styles from "../styles.module.scss";
+import Button from "@components/Button/Button";
 
 function ListProducts() {
     const { containerProduct } = styles;
-    const { products, isShowGrid } = useContext(OurShopContext);
+    const { products, isShowGrid, isLoading } = useContext(OurShopContext);
 
     return (
         <>
             <MainLayout>
-                <div className={isShowGrid ? containerProduct : ""}>
-                    {products.map((item) => {
-                        return (
-                            <ProductItem
-                                key={item.id}
-                                src={item.images[0]}
-                                prevSrc={item.images[1]}
-                                name={item.name}
-                                price={item.price}
-                                details={item}
-                                isHomaPage={false}
-                            />
-                        );
-                    })}
-                </div>
+                {isLoading ? (
+                    <>Loading...</>
+                ) : (
+                    <>
+                        <div className={isShowGrid ? containerProduct : ""}>
+                            {products.map((item) => {
+                                return (
+                                    <ProductItem
+                                        key={item.id}
+                                        src={item.images[0]}
+                                        prevSrc={item.images[1]}
+                                        name={item.name}
+                                        price={item.price}
+                                        details={item}
+                                        isHomaPage={false}
+                                    />
+                                );
+                            })}
+                        </div>
+
+                        <div style={{ width: "180px" }}>
+                            <Button content={"LOAD MORE PRODUCT"} />
+                        </div>
+                    </>
+                )}
             </MainLayout>
         </>
     );

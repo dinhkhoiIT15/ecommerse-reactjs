@@ -32,7 +32,6 @@ axiosClient.interceptors.response.use(
 
         if (err.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
-
             const refreshToken = Cookies.get("refreshToken");
 
             if (!refreshToken) {

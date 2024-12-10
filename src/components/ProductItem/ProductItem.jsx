@@ -5,7 +5,7 @@ import cartIcon from "@icons/svgs/cartIcon.svg";
 import eyesIcon from "@icons/svgs/eyesIcon.svg";
 import cls from "classnames";
 import Button from "@components/Button/Button";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { OurShopContext } from "@contexts/OurShopProvider";
 
 function ProductItem({
@@ -17,6 +17,7 @@ function ProductItem({
     isHomaPage = true
 }) {
     const { isShowGrid } = useContext(OurShopContext);
+    const [sizeChoose, setSizeChoose] = useState("");
 
     const {
         containerItem,
@@ -32,8 +33,18 @@ function ProductItem({
         boxBtn,
         content,
         leftBtn,
-        largeImg
+        largeImg,
+        isActiveSize,
+        btnClear
     } = styles;
+
+    const handleChooseSize = (size) => {
+        setSizeChoose(size);
+    };
+
+    const handleClearSize = () => {
+        setSizeChoose("");
+    };
 
     return (
         <div className={isShowGrid ? "" : containerItem}>
@@ -66,11 +77,23 @@ function ProductItem({
                     <div className={boxSize}>
                         {details.size.map((item, index) => {
                             return (
-                                <div className={size} key={index}>
+                                <div
+                                    className={cls(size, {
+                                        [isActiveSize]: sizeChoose === item.name
+                                    })}
+                                    key={index}
+                                    onClick={() => handleChooseSize(item.name)}
+                                >
                                     {item.name}
                                 </div>
                             );
                         })}
+                    </div>
+                )}
+
+                {sizeChoose && (
+                    <div className={btnClear} onClick={() => handleClearSize()}>
+                        clear
                     </div>
                 )}
                 <div

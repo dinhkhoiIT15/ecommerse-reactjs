@@ -26,7 +26,7 @@ function MyHeader() {
 
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
-    const { isOpen, setIsOpen, listProductsCart } = useContext(SidebarContext);
+    const { setIsOpen, listProductsCart, setType } = useContext(SidebarContext);
 
     const handleOpenSidebar = (type) => {
         setIsOpen(true);

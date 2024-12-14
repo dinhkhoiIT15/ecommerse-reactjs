@@ -9,11 +9,31 @@
 
     .total {
         @include flex_box_custom(space-between, center, 0);
+
+        .price {
+            font-size: 16px;
+            font-weight: 400;
+        }
     }
 
     .boxBtn {
         @include flex_box_custom(space-between, center, 10px);
 
         flex-direction: column;
+    }
+
+    .containerListProductCart {
+        position: relative;
+
+        .overlayLoading {
+            @include flex_box_custom(center, center, 0);
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
     }
 }
